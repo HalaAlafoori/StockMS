@@ -1,0 +1,16 @@
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\bin\Debug\StockMS.exe.config
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\bin\Debug\StockMS.exe
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\bin\Debug\StockMS.pdb
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.AssemblyReference.cache
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.SuggestedBindingRedirects.cache
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Properties.Resources.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.GenerateResource.cache
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.CoreCompileInputs.cache
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.exe
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.pdb
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Login.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.admin_dashbord.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_users.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_items.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_stocks.resources
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_transactions.resources
