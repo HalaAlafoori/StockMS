@@ -54,14 +54,15 @@ namespace StockMS
             }
         }
 
-        public static bool AddUser(string username, string password)
+        public static bool AddUser(string username, string password, string phone, int userType)
         {
             User newUser = new User();
             try
             {
                 newUser.Name = username;
                 newUser.Password = password;
-                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
+                newUser.Phone = phone;
+                newUser.IsAdmin = userType;
                 string returned = newUser.Save();
                 return returned == "1"? true:false;
             }

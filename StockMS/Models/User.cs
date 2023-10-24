@@ -42,6 +42,18 @@ namespace StockMS.Models
                 this.password = value;
             }
         }
+        private string phone;
+        public string Phone
+        {
+            get
+            {
+                return this.phone;
+            }
+            set
+            {
+                this.phone = value;
+            }
+        }
         private int status;
         public int Status
         {
@@ -73,11 +85,11 @@ namespace StockMS.Models
             {
                 if (value == 0 || value == 1)
                 {
-                    this.IsAdmin = value;
+                    isAdmin = value;
                 }
                 else
                 {
-                    throw new Exception("Status should be 1 or 0");
+                    throw new Exception("User Type should be 1 or 0");
                 }
             }
         }
@@ -89,9 +101,10 @@ namespace StockMS.Models
         {
             return new string[,]
             {
-                {"id", Id.ToString() },
+                //{"id", Id.ToString() },
                 {"name", Name.ToString() },
                 {"password", Password.ToString() },
+                {"phone", Phone.ToString() },
                 {"status", Status.ToString() },
                 {"isAdmin", IsAdmin.ToString() },
             };

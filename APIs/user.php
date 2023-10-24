@@ -124,17 +124,17 @@ if(isset($_POST))
     ////activate (status)
     if($_POST['RequestType'] == "activate")
     {
-        $name = "";
-        if(isset($_POST['name'])) $name = htmlspecialchars($_POST['name']);
+        $id = "";
+        if(isset($_POST['id'])) $id = htmlspecialchars($_POST['id']);
         $bugs = [];
     
 
-        if(empty($name))
+        if(empty($id))
         {
-            $bugs[]="user name is empty! ";
+            $bugs[]="user id is empty! ";
         }
     
-        $statement = "SELECT status FROM users WHERE name = '$name' ";
+        $statement = "SELECT status FROM users WHERE id = '$id' ";
         $base = $conn->prepare($statement);
         $base -> execute();
         $data = $base -> fetch(PDO::FETCH_ASSOC);
@@ -151,7 +151,7 @@ if(isset($_POST))
         if(empty($bugs))
         {
 
-            $statement = "UPDATE users SET status = $status WHERE name = '$name'";
+            $statement = "UPDATE users SET status = $status WHERE id = '$id'";
             $update_sql = $conn->prepare($statement)->execute();
             if (!$update_sql)
             {
@@ -171,7 +171,7 @@ if(isset($_POST))
         }
     }
 
-
+    
     #######################################################################################################################
 
 
@@ -213,6 +213,11 @@ if(isset($_POST))
         $password = "";
         if(isset($_POST['password'])) $password = htmlspecialchars($_POST['password']);
         
+        $phone = "";
+        if(isset($_POST['phone'])) $phone = htmlspecialchars($_POST['phone']);
+        $isAdmin = "";
+        if(isset($_POST['isAdmin'])) $isAdmin = htmlspecialchars($_POST['isAdmin']);
+        
         $bugs = [];
         if($name == "")
         {
@@ -233,6 +238,15 @@ if(isset($_POST))
         {
             $bugs[]=" password is empty! ";
         }
+
+        if($phone == "")
+        {
+            $bugs[]=" phone is empty! ";
+        }
+        if($isAdmin == "")
+        {
+            $isAdmin = 0;
+        }
         // elseif(strlen($password) < 6)
         // {
         //     $bugs[]="The password must be more than 6 characters ";
@@ -240,7 +254,7 @@ if(isset($_POST))
 
         if(empty($bugs))
         {
-            $statement = "INSERT INTO users (name, password) VALUES ('$name', '$password')";
+            $statement = "INSERT INTO users (name, password, phone, is_admin) VALUES ('$name', '$password', '$phone', '$isAdmin')";
             $sql = $conn->prepare($statement)->execute();
             
             if (!$sql)
