@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2023 at 10:09 PM
+-- Generation Time: Oct 24, 2023 at 01:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 8.0.11
 
@@ -114,7 +114,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `phone` int(9) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -122,9 +123,25 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `status`, `is_admin`) VALUES
-(1, 'njnj', '123', 1, 0),
-(2, 'neejo', '123123', 1, 0);
+INSERT INTO `users` (`id`, `name`, `password`, `phone`, `status`, `is_admin`) VALUES
+(1, 'njnj', '123', 0, 1, 1),
+(2, 'neejo', '123123', 0, 1, 0),
+(4, 'hala1', '123123', 0, 1, 0),
+(5, 'hala', '123', 0, 1, 0),
+(6, 'manar', '123', 0, 1, 0),
+(7, 'manal', '123', 0, 1, 0),
+(8, 'rahma', '123', 0, 1, 0),
+(9, 'njnjnj', '123', 777777777, 1, 0),
+(10, 'aa', '111', 777777777, 0, 0),
+(11, 'aaaa', '123', 888888888, 0, 0),
+(12, 'aaa', '123', 888888888, 0, 0),
+(13, 'aawe', '123', 1, 0, 0),
+(14, 'aaaadasda', '123123', 1, 0, 0),
+(15, 'aawen', '123', 888888888, 0, 1),
+(16, 'aawena', '123', 888888888, 0, 1),
+(17, 'abs', '123', 2147483647, 0, 1),
+(18, 'abssasadadada', '123', 2147483647, 0, 1),
+(19, 'qwer', '123', 999999999, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +239,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_log`
