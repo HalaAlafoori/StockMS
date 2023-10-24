@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 01:39 PM
+-- Generation Time: Oct 24, 2023 at 07:56 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 8.0.11
 
@@ -39,8 +39,7 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `name`, `price`) VALUES
 (1, 'item5', 1600),
-(2, 'item2', 10),
-(3, 'item4', 1500);
+(2, 'item2', 10);
 
 -- --------------------------------------------------------
 
@@ -141,7 +140,10 @@ INSERT INTO `users` (`id`, `name`, `password`, `phone`, `status`, `is_admin`) VA
 (16, 'aawena', '123', 888888888, 0, 1),
 (17, 'abs', '123', 2147483647, 0, 1),
 (18, 'abssasadadada', '123', 2147483647, 0, 1),
-(19, 'qwer', '123', 999999999, 0, 1);
+(19, 'qwe', '121', 999999999, 0, 1),
+(20, 'aghkl', '123123', 123123123, 0, 1),
+(21, 'ssgds', '123123', 123123123, 0, 1),
+(22, 'abc', '123', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -239,7 +241,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_log`

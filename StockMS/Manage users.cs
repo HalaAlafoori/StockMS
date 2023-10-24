@@ -49,25 +49,35 @@ namespace StockMS
         {
             if (e.RowIndex >= 0)
             {
-                username = DataGridView_users.Rows[e.RowIndex].Cells["name"].Value.ToString();
-                txt_username.Text = username;
+                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                txt_username.Text = DataGridView_users.Rows[e.RowIndex].Cells["name"].Value.ToString();
                 txt_password.Text = DataGridView_users.Rows[e.RowIndex].Cells["password"].Value.ToString();
                 txt_phone.Text = DataGridView_users.Rows[e.RowIndex].Cells["phone"].Value.ToString();
-                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["id"].Value.ToString());
                 active = DataGridView_users.Rows[e.RowIndex].Cells["status"].Value.ToString() == "1" ? true : false;
                 btn_active.Text = active ? "Unactivate" : "Activate";
                 toggleBtnEnabled();
                 passFlag = false;
+                typeCmbox.Text = DataGridView_users.Rows[e.RowIndex].Cells["is_admin"].Value.ToString() == "1"? "Admin": "User";
+
             }
         }
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-
+            UserFacade.UpdateUser(
+                id,
+                txt_username.Text,
+                txt_password.Text,
+                txt_phone.Text,
+                typeCmbox.Text == "Admin" ? 1 : 0
+            );
+            refresh();
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            UserFacade.DeleteUser(id);
+            refresh();
 
         }
 

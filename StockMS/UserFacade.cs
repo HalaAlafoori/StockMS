@@ -11,6 +11,8 @@ namespace StockMS
 {
     internal class UserFacade
     {
+
+        // user operations
         public static DataTable LoginUser(string username)
         {
             User user = new User();
@@ -72,9 +74,42 @@ namespace StockMS
                 return false;
             }
 
-            //FOR TESTING
-            //MessageBox.Show(newUser.Save());
         }
+
+        public static void UpdateUser(int ID, string name, string password, string phone, int userType)
+        {
+            User updUser = new User();
+            try
+            {
+                updUser.Id = ID;
+                updUser.Name = name;
+                updUser.Password = password;
+                updUser.Phone = phone;
+                updUser.IsAdmin = userType;
+                updUser.Update();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+        public static void DeleteUser(int ID)
+        {
+            try
+            {
+                //User.TYPE = "user";
+                User.Remove(ID.ToString(), "id");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+
+        // Item operations
 
         public static DataTable AllItems()
         {
@@ -144,6 +179,27 @@ namespace StockMS
             //MessageBox.Show(updteacher.Update());
         }
 
+        // user log operations
+
+        public static bool AddUserLog(UserLogModel newLog)
+        {
+            //UserLogModel newLog = new UserLogModel();
+            try
+            {
+                //newLog.UserId = userId;
+                //newLog.RowId = rowId;
+                //newLog.TableName = tableName;
+                //newLog.Type = type;
+                string returned = newLog.Save();
+                return returned == "1" ? true : false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+        }
 
     }
 

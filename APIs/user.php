@@ -56,6 +56,13 @@ if(isset($_POST))
         
         $password = "";
         if(isset($_POST['password'])) $password = htmlspecialchars($_POST['password']);
+
+        $phone = "";
+        if(isset($_POST['phone'])) $phone = htmlspecialchars($_POST['phone']);
+
+
+        $isAdmin = "";
+        if(isset($_POST['isAdmin'])) $isAdmin = htmlspecialchars($_POST['isAdmin']);
         
         $bugs = [];
         
@@ -88,11 +95,7 @@ if(isset($_POST))
     
         if(empty($bugs))
         {
-            $statement = "UPDATE users SET name = '$name'";
-            if($password != ""){
-                $statement .= ", password = '$password'";
-            }
-            $statement .= " WHERE ID = '$ID' ";
+            $statement = "UPDATE users SET name = '$name', password = '$password', is_admin = '$isAdmin', phone = '$phone' WHERE ID = '$ID' ";
 
             $update_sql = $conn->prepare($statement)->execute();
             if (!$update_sql)
