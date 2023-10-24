@@ -32,7 +32,7 @@ namespace StockMS.Models
         }
         public string Update()
         {
-            return Connector.Operate("update", Connector.ArrayToString(Fields()), TYPE);
+            return Connector.Operate("update", Connector.ArrayToString2(Fields()), TYPE);
             // ?? to save ??
         }
         public static string Activate(int id)

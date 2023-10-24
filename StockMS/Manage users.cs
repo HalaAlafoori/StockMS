@@ -104,7 +104,7 @@ namespace StockMS
             refresh();
         }
 
-        private void refresh()
+        private void refresh()  
         {
         
             DataGridView_users.DataSource = UserFacade.AllUsers();

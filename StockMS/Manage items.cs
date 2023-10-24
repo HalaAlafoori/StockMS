@@ -13,6 +13,11 @@ namespace StockMS
 {
     public partial class Manage_items : Form
     {
+        int id;
+        string name;
+        bool price;
+
+        string SelectedItemID;
 
         public Manage_items()
         {
@@ -35,39 +40,33 @@ namespace StockMS
         }
         private void Manage_users_Load(object sender, EventArgs e)
         {
+            refresh();
+
             //DataGridView_users.DataSource = UserFacade.AllAdmins();
             //toggleBtnDisabled();
             //DataGridView_users.ClearSelection();
         }
-        int id;
-        string username;
-        bool passFlag;
-        bool active;
+       
         private void DataGridView_users_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                username = DataGridView_users.Rows[e.RowIndex].Cells["Username"].Value.ToString();
-                nameTxt.Text = username;
-              //  txt_mobile.Text = DataGridView_users.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                priceTxt.Text = DataGridView_users.Rows[e.RowIndex].Cells["Password"].Value.ToString();
-                //txt_email.Text = DataGridView_users.Rows[e.RowIndex].Cells["Email"].Value.ToString();
-                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["ID"].Value.ToString());
-                active = DataGridView_users.Rows[e.RowIndex].Cells["Status"].Value.ToString() == "1" ? true : false;
-               // btn_active.Text = active ? "Unactivate" : "Activate";
-                 toggleBtnEnabled();
-                passFlag = false;
-            }
-        }
-
-        private void btn_update_Click(object sender, EventArgs e)
         {
             
         }
 
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            UserFacade.UpdateItem(
+                id,
+                nameTxt.Text,
+                priceTxt.Text
+            );
+            refresh();
+
+        }
+
         private void btn_delete_Click(object sender, EventArgs e)
         {
-           
+            UserFacade.DeleteItem(SelectedItemID);
+            refresh();
         }
 
         private void btn_active_Click(object sender, EventArgs e)
@@ -77,7 +76,57 @@ namespace StockMS
 
         private void txt_password_TextChanged(object sender, EventArgs e)
         {
-            passFlag = true;
+            //passFlag = true;
+        }
+
+       
+        private void DataGridView_users_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                name = DataGridView_items.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                nameTxt.Text = name;
+                //  txt_mobile.Text = DataGridView_users.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+                priceTxt.Text = DataGridView_items.Rows[e.RowIndex].Cells["price"].Value.ToString();
+                //txt_email.Text = DataGridView_users.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+                id = Int32.Parse(DataGridView_items.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                // btn_active.Text = active ? "Unactivate" : "Activate";
+                SelectedItemID = DataGridView_items.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                toggleBtnEnabled();
+            }
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            if (double.TryParse(priceTxt.Text, out double price))
+            {
+                UserFacade.AddItem(nameTxt.Text, price);
+                refresh();
+            }
+            else
+            {
+                MessageBox.Show("Invalid price value!", "Error");
+            }
+        }
+
+        private void refresh()
+        {
+
+            DataGridView_items.DataSource = UserFacade.AllItems();
+            toggleBtnDisabled();
+            DataGridView_items.ClearSelection();
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Control C in this.Controls)
+            {
+                if (C is TextBox)
+                {
+                    C.Text = "";
+
+                }
+            }
         }
     }
 }
