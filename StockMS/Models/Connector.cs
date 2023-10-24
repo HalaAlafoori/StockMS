@@ -78,7 +78,7 @@ namespace StockMS.Models
             if (array is null)
                 return String.Empty;
             string ready = "";
-            for (int i = 1; i < array.Length / 2; i++)
+            for (int i = 0; i < array.Length / 2; i++)
             {
                 ready += $"&{array[i, 0]}={array[i, 1]}";
             }

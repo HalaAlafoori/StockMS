@@ -79,5 +79,10 @@ namespace StockMS
         {
             passFlag = true;
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace StockMS
                 username = DataGridView_users.Rows[e.RowIndex].Cells["name"].Value.ToString();
                 txt_username.Text = username;
                 txt_password.Text = DataGridView_users.Rows[e.RowIndex].Cells["password"].Value.ToString();
+                txt_phone.Text = DataGridView_users.Rows[e.RowIndex].Cells["phone"].Value.ToString();
                 id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["id"].Value.ToString());
                 active = DataGridView_users.Rows[e.RowIndex].Cells["status"].Value.ToString() == "1" ? true : false;
                 btn_active.Text = active ? "Unactivate" : "Activate";
@@ -97,9 +98,10 @@ namespace StockMS
         private void btn_add_Click(object sender, EventArgs e)
         {
             UserFacade.AddUser(
-            txt_username.Text,
-            txt_password.Text
-            //txt_mobile.Text
+                txt_username.Text,
+                txt_password.Text,
+                txt_phone.Text,
+                typeCmbox.Text == "Admin"? 1:0
             );
             refresh();
         }
@@ -110,6 +112,11 @@ namespace StockMS
             DataGridView_users.DataSource = UserFacade.AllUsers();
             toggleBtnDisabled();
             DataGridView_users.ClearSelection();
+        }
+
+        private void typeCmbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -74,7 +74,7 @@ namespace StockMS
             this.label2.Location = new System.Drawing.Point(427, 537);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 19);
+            this.label2.Size = new System.Drawing.Size(122, 23);
             this.label2.TabIndex = 22;
             this.label2.Text = "Item price :";
             // 
@@ -95,7 +95,7 @@ namespace StockMS
             this.label1.Location = new System.Drawing.Point(18, 536);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 19);
+            this.label1.Size = new System.Drawing.Size(129, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "Item name :";
             // 
@@ -150,7 +150,7 @@ namespace StockMS
             this.label6.Location = new System.Drawing.Point(705, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(201, 31);
+            this.label6.Size = new System.Drawing.Size(252, 39);
             this.label6.TabIndex = 20;
             this.label6.Text = "Manage Items";
             // 
@@ -162,7 +162,7 @@ namespace StockMS
             this.label9.Location = new System.Drawing.Point(11, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(367, 31);
+            this.label9.Size = new System.Drawing.Size(463, 39);
             this.label9.TabIndex = 19;
             this.label9.Text = "Stock Managment System";
             // 
@@ -189,6 +189,7 @@ namespace StockMS
             this.addBtn.TabIndex = 37;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // DataGridView_users
             // 
@@ -211,7 +212,7 @@ namespace StockMS
             // 
             // Manage_items
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 716);

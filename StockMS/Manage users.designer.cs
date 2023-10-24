@@ -44,7 +44,7 @@ namespace StockMS
             this.label3 = new System.Windows.Forms.Label();
             this.txt_password = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_mobile = new System.Windows.Forms.TextBox();
+            this.txt_phone = new System.Windows.Forms.TextBox();
             this.txt_username = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_update = new System.Windows.Forms.Button();
@@ -70,7 +70,7 @@ namespace StockMS
             this.label4.Location = new System.Drawing.Point(427, 602);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 23);
+            this.label4.Size = new System.Drawing.Size(81, 19);
             this.label4.TabIndex = 29;
             this.label4.Text = "User Type";
             // 
@@ -82,9 +82,9 @@ namespace StockMS
             this.label3.Location = new System.Drawing.Point(18, 601);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 23);
+            this.label3.Size = new System.Drawing.Size(66, 19);
             this.label3.TabIndex = 28;
-            this.label3.Text = "Mobile :";
+            this.label3.Text = "Phone :";
             // 
             // txt_password
             // 
@@ -104,18 +104,18 @@ namespace StockMS
             this.label2.Location = new System.Drawing.Point(427, 537);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 23);
+            this.label2.Size = new System.Drawing.Size(88, 19);
             this.label2.TabIndex = 22;
             this.label2.Text = "Password :";
             // 
-            // txt_mobile
+            // txt_phone
             // 
-            this.txt_mobile.Location = new System.Drawing.Point(164, 597);
-            this.txt_mobile.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.txt_mobile.Multiline = true;
-            this.txt_mobile.Name = "txt_mobile";
-            this.txt_mobile.Size = new System.Drawing.Size(228, 33);
-            this.txt_mobile.TabIndex = 26;
+            this.txt_phone.Location = new System.Drawing.Point(164, 597);
+            this.txt_phone.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txt_phone.Multiline = true;
+            this.txt_phone.Name = "txt_phone";
+            this.txt_phone.Size = new System.Drawing.Size(228, 33);
+            this.txt_phone.TabIndex = 26;
             // 
             // txt_username
             // 
@@ -134,7 +134,7 @@ namespace StockMS
             this.label1.Location = new System.Drawing.Point(18, 536);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 23);
+            this.label1.Size = new System.Drawing.Size(95, 19);
             this.label1.TabIndex = 23;
             this.label1.Text = "Username :";
             // 
@@ -189,7 +189,7 @@ namespace StockMS
             this.label6.Location = new System.Drawing.Point(705, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(251, 39);
+            this.label6.Size = new System.Drawing.Size(199, 31);
             this.label6.TabIndex = 20;
             this.label6.Text = "Manage Users";
             // 
@@ -201,7 +201,7 @@ namespace StockMS
             this.label9.Location = new System.Drawing.Point(11, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(516, 39);
+            this.label9.Size = new System.Drawing.Size(411, 31);
             this.label9.TabIndex = 19;
             this.label9.Text = "Institute Managment System";
             // 
@@ -253,8 +253,9 @@ namespace StockMS
             "User"});
             this.typeCmbox.Location = new System.Drawing.Point(573, 595);
             this.typeCmbox.Name = "typeCmbox";
-            this.typeCmbox.Size = new System.Drawing.Size(228, 28);
+            this.typeCmbox.Size = new System.Drawing.Size(228, 25);
             this.typeCmbox.TabIndex = 38;
+            this.typeCmbox.SelectedIndexChanged += new System.EventHandler(this.typeCmbox_SelectedIndexChanged);
             // 
             // DataGridView_users
             // 
@@ -292,7 +293,7 @@ namespace StockMS
             // 
             // Manage_users
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 716);
@@ -309,7 +310,7 @@ namespace StockMS
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_password);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_mobile);
+            this.Controls.Add(this.txt_phone);
             this.Controls.Add(this.txt_username);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
@@ -339,7 +340,7 @@ namespace StockMS
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
         private Button btn_active;
-        private TextBox txt_mobile;
+        private TextBox txt_phone;
         private Button btn_add;
         private ComboBox typeCmbox;
         private DataGridView DataGridView_users;
