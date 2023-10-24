@@ -189,6 +189,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(968, 76);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label_role
             // 
@@ -198,7 +199,7 @@
             this.label_role.Location = new System.Drawing.Point(161, 40);
             this.label_role.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_role.Name = "label_role";
-            this.label_role.Size = new System.Drawing.Size(52, 24);
+            this.label_role.Size = new System.Drawing.Size(68, 31);
             this.label_role.TabIndex = 7;
             this.label_role.Text = "role";
             // 
@@ -210,7 +211,7 @@
             this.label6.Location = new System.Drawing.Point(20, 4);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 24);
+            this.label6.Size = new System.Drawing.Size(144, 31);
             this.label6.TabIndex = 6;
             this.label6.Text = "Welecom:";
             // 
@@ -222,7 +223,7 @@
             this.label5.Location = new System.Drawing.Point(20, 40);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 24);
+            this.label5.Size = new System.Drawing.Size(83, 31);
             this.label5.TabIndex = 8;
             this.label5.Text = "Rloe:";
             // 
@@ -234,7 +235,7 @@
             this.label_name.Location = new System.Drawing.Point(161, 4);
             this.label_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(67, 24);
+            this.label_name.Size = new System.Drawing.Size(87, 31);
             this.label_name.TabIndex = 5;
             this.label_name.Text = "name";
             // 
@@ -256,13 +257,13 @@
             this.label4.Location = new System.Drawing.Point(257, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(476, 40);
+            this.label4.Size = new System.Drawing.Size(593, 50);
             this.label4.TabIndex = 2;
             this.label4.Text = "Stock Managment System";
             // 
             // admin_dashbord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 718);
             this.Controls.Add(this.panel_main);

@@ -57,6 +57,7 @@ namespace StockMS
             this.btn_add = new System.Windows.Forms.Button();
             this.typeCmbox = new System.Windows.Forms.ComboBox();
             this.DataGridView_users = new System.Windows.Forms.DataGridView();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_users)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +70,7 @@ namespace StockMS
             this.label4.Location = new System.Drawing.Point(427, 602);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 19);
+            this.label4.Size = new System.Drawing.Size(103, 23);
             this.label4.TabIndex = 29;
             this.label4.Text = "User Type";
             // 
@@ -81,7 +82,7 @@ namespace StockMS
             this.label3.Location = new System.Drawing.Point(18, 601);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 19);
+            this.label3.Size = new System.Drawing.Size(89, 23);
             this.label3.TabIndex = 28;
             this.label3.Text = "Mobile :";
             // 
@@ -103,7 +104,7 @@ namespace StockMS
             this.label2.Location = new System.Drawing.Point(427, 537);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 19);
+            this.label2.Size = new System.Drawing.Size(112, 23);
             this.label2.TabIndex = 22;
             this.label2.Text = "Password :";
             // 
@@ -133,7 +134,7 @@ namespace StockMS
             this.label1.Location = new System.Drawing.Point(18, 536);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 19);
+            this.label1.Size = new System.Drawing.Size(120, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "Username :";
             // 
@@ -188,7 +189,7 @@ namespace StockMS
             this.label6.Location = new System.Drawing.Point(705, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(199, 31);
+            this.label6.Size = new System.Drawing.Size(251, 39);
             this.label6.TabIndex = 20;
             this.label6.Text = "Manage Users";
             // 
@@ -200,7 +201,7 @@ namespace StockMS
             this.label9.Location = new System.Drawing.Point(11, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(411, 31);
+            this.label9.Size = new System.Drawing.Size(516, 39);
             this.label9.TabIndex = 19;
             this.label9.Text = "Institute Managment System";
             // 
@@ -242,6 +243,7 @@ namespace StockMS
             this.btn_add.TabIndex = 37;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = false;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // typeCmbox
             // 
@@ -251,7 +253,7 @@ namespace StockMS
             "User"});
             this.typeCmbox.Location = new System.Drawing.Point(573, 595);
             this.typeCmbox.Name = "typeCmbox";
-            this.typeCmbox.Size = new System.Drawing.Size(228, 25);
+            this.typeCmbox.Size = new System.Drawing.Size(228, 28);
             this.typeCmbox.TabIndex = 38;
             // 
             // DataGridView_users
@@ -273,9 +275,24 @@ namespace StockMS
             this.DataGridView_users.TabIndex = 36;
             this.DataGridView_users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_users_CellClick);
             // 
+            // clearBtn
+            // 
+            this.clearBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearBtn.BackColor = System.Drawing.Color.Wheat;
+            this.clearBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clearBtn.ForeColor = System.Drawing.Color.White;
+            this.clearBtn.Location = new System.Drawing.Point(296, 671);
+            this.clearBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(116, 34);
+            this.clearBtn.TabIndex = 30;
+            this.clearBtn.Text = "Clear";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.btn_clesr_Click);
+            // 
             // Manage_users
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 716);
@@ -285,6 +302,7 @@ namespace StockMS
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_update);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.btn_active);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.label4);
@@ -325,5 +343,6 @@ namespace StockMS
         private Button btn_add;
         private ComboBox typeCmbox;
         private DataGridView DataGridView_users;
+        private Button clearBtn;
     }
 }

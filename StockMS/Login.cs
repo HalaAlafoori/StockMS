@@ -19,13 +19,28 @@ namespace StockMS
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            admin_dashbord ad=new admin_dashbord();
-            this.Hide();
-            ad.ShowDialog();
-            this.Close();
+            DataTable userdata = UserFacade.LoginUser(nameTxt.Text);
+            if(userdata != null && userdata.Rows.Count > 0)
+            {
+                UserDetails.AuthorizeUser(passTxt.Text, userdata, this, new admin_dashbord());
+            }
+            else
+            {
+                MessageBox.Show("password or Username are wrong!", "Warning!");
+            }
+
+            //admin_dashbord ad=new admin_dashbord();
+            //this.Hide();
+            //ad.ShowDialog();
+            //this.Close();
         }
 
         private void passTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_Load(object sender, EventArgs e)
         {
 
         }

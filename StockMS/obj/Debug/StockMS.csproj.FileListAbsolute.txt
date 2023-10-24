@@ -14,3 +14,41 @@ D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage
 D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_items.resources
 D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_stocks.resources
 D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.Manage_transactions.resources
+D:\our_cs_project\StockMS\StockMS\bin\Debug\StockMS.exe.config
+D:\our_cs_project\StockMS\StockMS\bin\Debug\StockMS.exe
+D:\our_cs_project\StockMS\StockMS\bin\Debug\StockMS.pdb
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.csproj.AssemblyReference.cache
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.csproj.SuggestedBindingRedirects.cache
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.admin_dashbord.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Login.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Manage_items.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Manage_stocks.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Manage_transactions.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Manage_users.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.Properties.Resources.resources
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.csproj.GenerateResource.cache
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.csproj.CoreCompileInputs.cache
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.exe
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.pdb
+D:\our_cs_project\StockMS\StockMS\bin\Debug\Newtonsoft.Json.dll
+D:\our_cs_project\StockMS\StockMS\bin\Debug\Newtonsoft.Json.xml
+D:\our_cs_project\StockMS\StockMS\obj\Debug\StockMS.csproj.CopyComplete
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\bin\Debug\StockMS.exe.config
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\bin\Debug\StockMS.exe
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\bin\Debug\StockMS.pdb
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.csproj.AssemblyReference.cache
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.csproj.SuggestedBindingRedirects.cache
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.admin_dashbord.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Login.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Manage_items.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Manage_stocks.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Manage_transactions.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Manage_users.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.Properties.Resources.resources
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.csproj.GenerateResource.cache
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.csproj.CoreCompileInputs.cache
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.csproj.CopyComplete
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.exe
+C:\Users\Najla-PC\Desktop\StockMS\StockMS\obj\Debug\StockMS.pdb

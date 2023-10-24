@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockMS.Models
 {
-    internal class Transaction : Database
+    public class Transaction : Database
     {
         public int Id;
         public int ItemID;
@@ -34,7 +34,7 @@ namespace StockMS.Models
 
         public Transaction()
         {
-            TYPE = "Transaction";
+            TYPE = "transaction";
         }
     }
 }

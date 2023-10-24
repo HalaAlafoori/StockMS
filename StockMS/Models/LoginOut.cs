@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockMS.Models
 {
-    internal class LoginOut : Database
+    public class LoginOut : Database
     {
         //public int Id;
         public int UserId;

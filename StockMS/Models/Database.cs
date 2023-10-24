@@ -22,7 +22,7 @@ namespace StockMS.Models
         }
         public static void Remove(string key, string column = "")
         {
-            if (column == "") column = "username";
+            if (column == "") column = "name";
             string query = $"&{column}={key}";
             Connector.Operate("delete", query, TYPE);
         }
@@ -35,13 +35,14 @@ namespace StockMS.Models
             return Connector.Operate("update", Connector.ArrayToString(Fields()), TYPE);
             // ?? to save ??
         }
-        public static string Activate(string username)
+        public static string Activate(int id)
         {
-            return Connector.Operate("activate", $"&username={username}", TYPE);
+            return Connector.Operate("activate", $"&id={id}", TYPE);
         }
-        public static DataTable? Find(string key, string column = "")
+        public static DataTable Find(string key, string column = "")
+        //public static DataTable? Find(string key, string column = "")
         {
-            if (column == "") column = "username";
+            if (column == "") column = "name";
             string query = $"&{column}={key}";
             string data = Connector.Operate("select", query, TYPE);
             if (data != "0")
@@ -54,7 +55,7 @@ namespace StockMS.Models
                 return new DataTable();
             }
         }
-        public static DataTable? All()
+        public static DataTable All()
         {
             string data = Connector.Operate("select", "", TYPE);
             if (data != "0")
@@ -72,4 +73,3 @@ namespace StockMS.Models
         }
     }
 }
-

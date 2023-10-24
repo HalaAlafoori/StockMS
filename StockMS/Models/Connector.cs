@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockMS.Models
 {
-    internal class Connector
+    public static class Connector
     {
         public static string host = "localhost";
         /// <summary>
@@ -27,7 +28,7 @@ namespace StockMS.Models
         /// <exception cref="ArgumentException">throws an error if the operation in the server encountered an error</exception>
         private static string connect(string postData, string type)
         {
-            WebRequest request = WebRequest.Create(string.Format("http://{0}:{1}/{2}/{3}APIs.php", host, port, path, type));
+            WebRequest request = WebRequest.Create(string.Format("http://{0}:{1}/{2}/{3}.php", host, port, path, type));
             // The WebRequest class: is an abstract base class in .NET that provides a common interface for making requests to a resource identified by a URI
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -77,7 +78,7 @@ namespace StockMS.Models
             if (array is null)
                 return String.Empty;
             string ready = "";
-            for (int i = 0; i < array.Length / 2; i++)
+            for (int i = 1; i < array.Length / 2; i++)
             {
                 ready += $"&{array[i, 0]}={array[i, 1]}";
             }
@@ -85,4 +86,3 @@ namespace StockMS.Models
         }
     }
 }
-

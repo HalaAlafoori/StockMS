@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockMS.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,9 +39,7 @@ namespace StockMS
         }
         private void Manage_users_Load(object sender, EventArgs e)
         {
-            //DataGridView_users.DataSource = UserFacade.AllAdmins();
-            //toggleBtnDisabled();
-            //DataGridView_users.ClearSelection();
+            refresh();
         }
         int id;
         string username;
@@ -50,37 +49,67 @@ namespace StockMS
         {
             if (e.RowIndex >= 0)
             {
-                username = DataGridView_users.Rows[e.RowIndex].Cells["Username"].Value.ToString();
+                username = DataGridView_users.Rows[e.RowIndex].Cells["name"].Value.ToString();
                 txt_username.Text = username;
-                txt_mobile.Text = DataGridView_users.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                txt_password.Text = DataGridView_users.Rows[e.RowIndex].Cells["Password"].Value.ToString();
-                //txt_email.Text = DataGridView_users.Rows[e.RowIndex].Cells["Email"].Value.ToString();
-                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["ID"].Value.ToString());
-                active = DataGridView_users.Rows[e.RowIndex].Cells["Status"].Value.ToString() == "1" ? true : false;
+                txt_password.Text = DataGridView_users.Rows[e.RowIndex].Cells["password"].Value.ToString();
+                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                active = DataGridView_users.Rows[e.RowIndex].Cells["status"].Value.ToString() == "1" ? true : false;
                 btn_active.Text = active ? "Unactivate" : "Activate";
-                 toggleBtnEnabled();
+                toggleBtnEnabled();
                 passFlag = false;
             }
         }
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btn_active_Click(object sender, EventArgs e)
         {
-          
+            UserFacade.ActivateUser(id);
+            Manage_users_Load(sender, e);
         }
 
         private void txt_password_TextChanged(object sender, EventArgs e)
         {
             passFlag = true;
+        }
+
+        private void btn_clesr_Click(object sender, EventArgs e)
+        {
+            foreach (Control C in this.Controls)
+            {
+                if (C is TextBox)
+                {
+                    C.Text = "";
+
+                }
+            }
+        }
+        DataTable newUser = new DataTable();
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            UserFacade.AddUser(
+            txt_username.Text,
+            txt_password.Text
+            //txt_mobile.Text
+            );
+            refresh();
+        }
+
+        private void refresh()
+        {
+        
+            DataGridView_users.DataSource = UserFacade.AllUsers();
+            toggleBtnDisabled();
+            DataGridView_users.ClearSelection();
         }
     }
 }

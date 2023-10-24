@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockMS.Models
 {
-    internal class User : Database
+    public class User : Database
     {
         public int Id;
 
@@ -83,15 +83,15 @@ namespace StockMS.Models
         }
 
 
-        private readonly Regex namePattern = new(@"[A-Za-z\s]+$");
+        private readonly Regex namePattern = new Regex("[A-Za-z\\s]+$");
 
         protected override string[,] Fields()
         {
             return new string[,]
             {
-                { "id", Id.ToString() },
+                {"id", Id.ToString() },
                 {"name", Name.ToString() },
-                {"passwrod", Password.ToString() },
+                {"password", Password.ToString() },
                 {"status", Status.ToString() },
                 {"isAdmin", IsAdmin.ToString() },
             };
@@ -99,7 +99,7 @@ namespace StockMS.Models
 
         public User()
         {
-            TYPE = "User";
+            TYPE = "user";
         }
     }
 }

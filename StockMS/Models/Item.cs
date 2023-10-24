@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StockMS.Models
@@ -25,7 +24,7 @@ namespace StockMS.Models
 
         public Item()
         {
-            TYPE = "Item";
+            TYPE = "item";
         }
     }
 }

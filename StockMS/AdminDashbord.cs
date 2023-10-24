@@ -20,7 +20,14 @@ namespace StockMS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           ;
+            userBtn.Visible = false;
+            if (UserDetails.role == "admin")
+            {
+                userBtn.Visible = true;
+            }
+
+            label_name.Text = UserDetails.username;
+            label_role.Text = UserDetails.role;
         }
 
         private void selectedButton(Button btn) {
@@ -180,6 +187,11 @@ namespace StockMS
             unselectedButton();
             selectedButton(this.logoutBtn);
             this.Close();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
