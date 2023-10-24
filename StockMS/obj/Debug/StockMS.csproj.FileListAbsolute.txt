@@ -71,3 +71,6 @@ D:\codes\C#\SockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.CoreCompileInputs.ca
 D:\codes\C#\SockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.CopyComplete
 D:\codes\C#\SockMS\StockMS\StockMS\obj\Debug\StockMS.exe
 D:\codes\C#\SockMS\StockMS\StockMS\obj\Debug\StockMS.pdb
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\bin\Debug\Newtonsoft.Json.dll
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\bin\Debug\Newtonsoft.Json.xml
+D:\CS4A\Advance programming lab\StockMS\StockMS\StockMS\obj\Debug\StockMS.csproj.CopyComplete

@@ -14,7 +14,7 @@ namespace StockMS.Models
         /// <summary>
         /// The port of the server
         /// </summary>
-        public static string port = "8080";
+        public static string port = "8083";
         /// <summary>
         /// The path where APIs are
         /// </summary>
