@@ -84,5 +84,17 @@ namespace StockMS.Models
             }
             return ready;
         }
+
+        public static string ArrayToString2(string[,] array)
+        {
+            if (array is null)
+                return String.Empty;
+            string ready = "";
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                ready += $"&{array[i, 0]}={array[i, 1]}";
+            }
+            return ready;
+        }
     }
 }
