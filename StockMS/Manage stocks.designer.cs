@@ -52,9 +52,10 @@ namespace StockMS
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addBtn = new System.Windows.Forms.Button();
-            this.DataGridView_users = new System.Windows.Forms.DataGridView();
+            this.DataGridView_stock = new System.Windows.Forms.DataGridView();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_users)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_stock)).BeginInit();
             this.SuspendLayout();
             // 
             // locationTxt
@@ -75,7 +76,7 @@ namespace StockMS
             this.label2.Location = new System.Drawing.Point(427, 537);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 19);
+            this.label2.Size = new System.Drawing.Size(106, 23);
             this.label2.TabIndex = 22;
             this.label2.Text = "Location :";
             // 
@@ -96,7 +97,7 @@ namespace StockMS
             this.label1.Location = new System.Drawing.Point(18, 536);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 19);
+            this.label1.Size = new System.Drawing.Size(139, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "Stock name :";
             // 
@@ -141,6 +142,7 @@ namespace StockMS
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(977, 45);
             this.panel1.TabIndex = 34;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label6
             // 
@@ -151,7 +153,7 @@ namespace StockMS
             this.label6.Location = new System.Drawing.Point(705, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(216, 31);
+            this.label6.Size = new System.Drawing.Size(272, 39);
             this.label6.TabIndex = 20;
             this.label6.Text = "Manage Stocks";
             // 
@@ -163,7 +165,7 @@ namespace StockMS
             this.label9.Location = new System.Drawing.Point(11, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(367, 31);
+            this.label9.Size = new System.Drawing.Size(463, 39);
             this.label9.TabIndex = 19;
             this.label9.Text = "Stock Managment System";
             // 
@@ -190,34 +192,52 @@ namespace StockMS
             this.addBtn.TabIndex = 37;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // DataGridView_users
+            // DataGridView_stock
             // 
-            this.DataGridView_users.AllowUserToAddRows = false;
-            this.DataGridView_users.AllowUserToDeleteRows = false;
-            this.DataGridView_users.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DataGridView_stock.AllowUserToAddRows = false;
+            this.DataGridView_stock.AllowUserToDeleteRows = false;
+            this.DataGridView_stock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DataGridView_users.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.DataGridView_users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView_users.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridView_users.Location = new System.Drawing.Point(0, 44);
-            this.DataGridView_users.MultiSelect = false;
-            this.DataGridView_users.Name = "DataGridView_users";
-            this.DataGridView_users.RowHeadersWidth = 51;
-            this.DataGridView_users.RowTemplate.Height = 29;
-            this.DataGridView_users.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_users.Size = new System.Drawing.Size(977, 454);
-            this.DataGridView_users.TabIndex = 36;
-            this.DataGridView_users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_users_CellClick);
+            this.DataGridView_stock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.DataGridView_stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView_stock.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridView_stock.Location = new System.Drawing.Point(0, 44);
+            this.DataGridView_stock.MultiSelect = false;
+            this.DataGridView_stock.Name = "DataGridView_stock";
+            this.DataGridView_stock.RowHeadersWidth = 51;
+            this.DataGridView_stock.RowTemplate.Height = 29;
+            this.DataGridView_stock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridView_stock.Size = new System.Drawing.Size(977, 454);
+            this.DataGridView_stock.TabIndex = 36;
+            this.DataGridView_stock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_users_CellClick);
+            this.DataGridView_stock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_users_CellContentClick);
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearBtn.BackColor = System.Drawing.Color.Goldenrod;
+            this.clearBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.clearBtn.ForeColor = System.Drawing.Color.White;
+            this.clearBtn.Location = new System.Drawing.Point(431, 671);
+            this.clearBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(116, 34);
+            this.clearBtn.TabIndex = 38;
+            this.clearBtn.Text = "Clear";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // Manage_stocks
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 716);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.DataGridView_users);
+            this.Controls.Add(this.DataGridView_stock);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.updateBtn);
@@ -233,7 +253,7 @@ namespace StockMS
             this.Load += new System.EventHandler(this.Manage_users_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_users)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_stock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +271,7 @@ namespace StockMS
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
         private Button addBtn;
-        private DataGridView DataGridView_users;
+        private DataGridView DataGridView_stock;
+        private Button clearBtn;
     }
 }

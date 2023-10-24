@@ -143,6 +143,72 @@ namespace StockMS
             //MessageBox.Show(updteacher.Update());
         }
 
+        public static DataTable AllStocks()
+        {
+            try
+            {
+                User.TYPE = "stock";
+                return User.All();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return new DataTable();
+            }
+        }
+        public static bool AddStock(string name, string location)
+        {
+            Stock newStock = new Stock();
+            try
+            {
+                newStock.Name = name;
+                newStock.Location = location;
+                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
+                string returned = newStock.Save();
+                return returned == "1" ? true : false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+            //FOR TESTING
+            //MessageBox.Show(newUser.Save());
+        }
+        public static void DeleteStock(string ID)
+        {
+            try
+            {
+                Item.TYPE = "stock";
+                Item.Remove(ID, "id");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public static void UpdateStock(int ID, string name, string location)
+        {
+            Stock updStock = new Stock();
+            try
+            {
+                updStock.Id = ID;
+                updStock.Name = name;
+                updStock.Location = location;
+                //upditem.Price = Int32.Parse(salary);
+                updStock.Update();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            //FOR TESTING
+            //MessageBox.Show(updteacher.Update());
+        }
+
 
     }
 

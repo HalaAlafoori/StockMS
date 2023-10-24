@@ -13,6 +13,19 @@ namespace StockMS
 {
     public partial class Manage_stocks : Form
     {
+        int id;
+        string name;
+        string location;
+        string SelectedStockID;
+        bool passFlag;
+
+        private void refresh()
+        {
+
+            DataGridView_stock.DataSource = UserFacade.AllStocks();
+            toggleBtnDisabled();
+            DataGridView_stock.ClearSelection();
+        }
 
         public Manage_stocks()
         {
@@ -41,36 +54,40 @@ namespace StockMS
             //DataGridView_users.DataSource = UserFacade.AllAdmins();
             //toggleBtnDisabled();
             //DataGridView_users.ClearSelection();
+            refresh();
         }
-        int id;
-        string username;
-        bool passFlag;
-        bool active;
+        
         private void DataGridView_users_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                username = DataGridView_users.Rows[e.RowIndex].Cells["Username"].Value.ToString();
-                nameTxt.Text = username;
+                name = DataGridView_stock.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                nameTxt.Text = name;
                // txt_mobile.Text = DataGridView_users.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                locationTxt.Text = DataGridView_users.Rows[e.RowIndex].Cells["Password"].Value.ToString();
+                locationTxt.Text = DataGridView_stock.Rows[e.RowIndex].Cells["location"].Value.ToString();
                 //txt_email.Text = DataGridView_users.Rows[e.RowIndex].Cells["Email"].Value.ToString();
-                id = Int32.Parse(DataGridView_users.Rows[e.RowIndex].Cells["ID"].Value.ToString());
-                active = DataGridView_users.Rows[e.RowIndex].Cells["Status"].Value.ToString() == "1" ? true : false;
-                //btn_active.Text = active ? "Unactivate" : "Activate";
-                 toggleBtnEnabled();
+                id = Int32.Parse(DataGridView_stock.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                SelectedStockID = DataGridView_stock.Rows[e.RowIndex].Cells["id"].Value.ToString();
+
+                toggleBtnEnabled();
                 passFlag = false;
             }
         }
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            
+            UserFacade.UpdateStock(
+               id,
+               nameTxt.Text,
+               locationTxt.Text
+           );
+            refresh();
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-           
+            UserFacade.DeleteStock(SelectedStockID);
+            refresh();
         }
 
         private void btn_active_Click(object sender, EventArgs e)
@@ -81,6 +98,38 @@ namespace StockMS
         private void txt_password_TextChanged(object sender, EventArgs e)
         {
             passFlag = true;
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            UserFacade.AddStock(
+            nameTxt.Text,
+            locationTxt.Text
+
+            );
+            refresh();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DataGridView_users_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Control C in this.Controls)
+            {
+                if (C is TextBox)
+                {
+                    C.Text = "";
+
+                }
+            }
         }
     }
 }
