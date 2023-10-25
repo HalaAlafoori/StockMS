@@ -142,19 +142,20 @@ namespace StockMS
             // 
             // toPicker
             // 
-            this.toPicker.Location = new System.Drawing.Point(796, 67);
+            this.toPicker.Location = new System.Drawing.Point(692, 67);
             this.toPicker.Name = "toPicker";
-            this.toPicker.Size = new System.Drawing.Size(169, 23);
+            this.toPicker.Size = new System.Drawing.Size(273, 23);
             this.toPicker.TabIndex = 45;
             this.toPicker.ValueChanged += new System.EventHandler(this.toPicker_ValueChanged);
             // 
             // fromPicker
             // 
-            this.fromPicker.Location = new System.Drawing.Point(622, 67);
+            this.fromPicker.Location = new System.Drawing.Point(400, 67);
             this.fromPicker.Name = "fromPicker";
-            this.fromPicker.Size = new System.Drawing.Size(169, 23);
+            this.fromPicker.Size = new System.Drawing.Size(269, 23);
             this.fromPicker.TabIndex = 44;
             this.fromPicker.ValueChanged += new System.EventHandler(this.fromPicker_ValueChanged);
+            this.fromPicker.TabIndexChanged += new System.EventHandler(this.fromPicker_TabIndexChanged);
             // 
             // ItemComboBox
             // 
@@ -164,7 +165,7 @@ namespace StockMS
             this.ItemComboBox.Items.AddRange(new object[] {
             "Admin",
             "User"});
-            this.ItemComboBox.Location = new System.Drawing.Point(380, 66);
+            this.ItemComboBox.Location = new System.Drawing.Point(140, 65);
             this.ItemComboBox.Name = "ItemComboBox";
             this.ItemComboBox.Size = new System.Drawing.Size(115, 25);
             this.ItemComboBox.TabIndex = 43;
@@ -179,7 +180,7 @@ namespace StockMS
             this.stockComboBox.Items.AddRange(new object[] {
             "Admin",
             "User"});
-            this.stockComboBox.Location = new System.Drawing.Point(501, 66);
+            this.stockComboBox.Location = new System.Drawing.Point(263, 65);
             this.stockComboBox.Name = "stockComboBox";
             this.stockComboBox.Size = new System.Drawing.Size(115, 25);
             this.stockComboBox.TabIndex = 42;

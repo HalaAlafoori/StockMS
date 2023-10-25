@@ -23,12 +23,16 @@ namespace StockMS
         DataTable transTable;
 
 
-        private void filterRefresh(string selectedItem, string selectedStock) {
+        private void filterRefresh(string selectedItem, string selectedStock, DateTime fromDate,DateTime  toDate) {
+
 
             bool itemSearch = false;
             bool stockSearch = false;
+            bool dateSearch = false;
             int itemId = -1;
             int stockId = -1;
+            //string toDate="";
+            //string fromDate;
 
             if (selectedItem != ""){
                  itemId = getId(selectedItem, "item");
@@ -39,9 +43,19 @@ namespace StockMS
                  stockId = getId(selectedStock, "stock");
                 stockSearch = true;
             }
+            if(fromDate!= new DateTime(2023, 10, 10) )
+            {
+                dateSearch = true;
+            }
+            if (toDate != DateTime.Today.Date)
+            {
+                dateSearch = true;
+            }
 
 
-           
+
+
+
             DataTable filterResult=new DataTable();
             foreach (DataColumn column in transTable.Columns)
 {
@@ -76,7 +90,7 @@ namespace StockMS
                     // Copy values individually from source row to destination row
                     for (int i = 0; i < filterResult.Columns.Count; i++)
                     {
-                          MessageBox.Show("in");
+                         // MessageBox.Show("in");
                         string columnName = filterResult.Columns[i].ColumnName;
                         newRow[columnName] = dataRow[columnName];
                     }
@@ -99,6 +113,50 @@ namespace StockMS
                 DataGridView_trans.DataSource = filterResult;
                 toggleBtnDisabled();
                 DataGridView_trans.ClearSelection();
+                return;
+
+
+                DataTable datefilterResult = new DataTable();
+                foreach (DataColumn column in filterResult.Columns)
+                {
+                    datefilterResult.Columns.Add(column.ColumnName, column.DataType);
+
+                }
+                //check date
+                if (dateSearch )
+                {
+                    
+
+                        DataRow newRow = datefilterResult.NewRow();
+                    for (int i = 0; i < datefilterResult.Columns.Count; i++)
+                    {
+                        DateTime rowDate =Convert.ToDateTime( dataRow["date"]);
+                        MessageBox.Show(rowDate.ToString());
+                        if(rowDate > fromDate && rowDate <= toDate)
+                        {
+                            MessageBox.Show("item added");
+                            string columnName = datefilterResult.Columns[i].ColumnName;
+                            newRow[columnName] = dataRow[columnName];
+                              MessageBox.Show("in");
+
+                        }
+
+
+                    }
+                    datefilterResult.Rows.Add(newRow);
+
+                }
+                //refresh
+                DataGridView_trans.DataSource = datefilterResult;
+                toggleBtnDisabled();
+                DataGridView_trans.ClearSelection();
+                return;
+
+
+
+
+
+
 
             }
 
@@ -109,6 +167,9 @@ namespace StockMS
         }
         private void refresh()
         {
+            toPicker.Value = DateTime.Today.Date;
+
+            fromPicker.Value = new DateTime(2023, 10, 10);
             transTable = UserFacade.AllTrans();
 
             DataGridView_trans.DataSource = transTable;
@@ -182,6 +243,7 @@ namespace StockMS
 
             stockDropdown();
             itemDropdown();
+
             
 
 
@@ -352,12 +414,12 @@ namespace StockMS
 
         private void fromPicker_ValueChanged(object sender, EventArgs e)
         {
-
+            //ApplyFilters();
         }
 
         private void toPicker_ValueChanged(object sender, EventArgs e)
         {
-
+            //ApplyFilters();
         }
 
         private void ApplyFilters()
@@ -366,7 +428,7 @@ namespace StockMS
             string selectedItem = (string)ItemComboBox.SelectedItem;
             string selectedStock = (string)stockComboBox.SelectedItem;
 
-            filterRefresh(selectedItem, selectedStock);
+            filterRefresh(selectedItem, selectedStock, fromPicker.Value, toPicker.Value);
 
            
 
@@ -424,10 +486,15 @@ namespace StockMS
 
         private void ItemComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ApplyFilters();
+            //ApplyFilters();
         }
 
         private void stockComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void fromPicker_TabIndexChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
