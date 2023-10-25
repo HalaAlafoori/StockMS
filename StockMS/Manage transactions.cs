@@ -20,10 +20,98 @@ namespace StockMS
         int chosenStock;
         DataTable stocksTable;
         DataTable itemTable;
+        DataTable transTable;
+
+
+        private void filterRefresh(string selectedItem, string selectedStock) {
+
+            bool itemSearch = false;
+            bool stockSearch = false;
+            int itemId = -1;
+            int stockId = -1;
+
+            if (selectedItem != ""){
+                 itemId = getId(selectedItem, "item");
+                itemSearch = true;
+            }
+            if (selectedStock != "")
+            {
+                 stockId = getId(selectedStock, "stock");
+                stockSearch = true;
+            }
+
+
+           
+            DataTable filterResult=new DataTable();
+            foreach (DataColumn column in transTable.Columns)
+{
+    filterResult.Columns.Add(column.ColumnName, column.DataType);
+}
+            foreach (var row in transTable.Rows) {
+
+                DataRow dataRow = (DataRow)row;
+                if ((stockSearch && !itemSearch) && (stockId!=-1 &&Convert.ToInt32( dataRow["stock_id"] )== stockId))
+                {
+                    
+                    DataRow newRow = filterResult.NewRow();
+                    // Copy values individually from source row to destination row
+                    for (int i = 0; i < filterResult.Columns.Count; i++)
+                    {
+                      //  MessageBox.Show("in");
+                        string columnName = filterResult.Columns[i].ColumnName;
+                        newRow[columnName] = dataRow[columnName];
+                    }
+                    filterResult.Rows.Add(newRow);
+                    
+
+
+
+
+                    // filterResult.Rows.Add(dataRow.i);
+                }
+                else if ((!stockSearch && itemSearch) && (itemId != -1 && Convert.ToInt32(dataRow["item_id"] )== itemId))
+                {
+
+                    DataRow newRow = filterResult.NewRow();
+                    // Copy values individually from source row to destination row
+                    for (int i = 0; i < filterResult.Columns.Count; i++)
+                    {
+                          MessageBox.Show("in");
+                        string columnName = filterResult.Columns[i].ColumnName;
+                        newRow[columnName] = dataRow[columnName];
+                    }
+                    filterResult.Rows.Add(newRow);
+                }
+                else if (stockSearch && itemSearch && Convert.ToInt32(dataRow["stock_id"]) == stockId && Convert.ToInt32(dataRow["item_id"]) == itemId)
+                {
+
+                    DataRow newRow = filterResult.NewRow();
+                    // Copy values individually from source row to destination row
+                    for (int i = 0; i < filterResult.Columns.Count; i++)
+                    {
+                        //  MessageBox.Show("in");
+                        string columnName = filterResult.Columns[i].ColumnName;
+                        newRow[columnName] = dataRow[columnName];
+                    }
+                    filterResult.Rows.Add(newRow);
+                }
+                //refresh
+                DataGridView_trans.DataSource = filterResult;
+                toggleBtnDisabled();
+                DataGridView_trans.ClearSelection();
+
+            }
+
+
+            //MessageBox.Show(selectedItem + itemId.ToString());
+
+
+        }
         private void refresh()
         {
+            transTable = UserFacade.AllTrans();
 
-            DataGridView_trans.DataSource = UserFacade.AllTrans();
+            DataGridView_trans.DataSource = transTable;
             toggleBtnDisabled();
             DataGridView_trans.ClearSelection();
         }
@@ -216,12 +304,12 @@ namespace StockMS
 
         private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+           // ApplyFilters();
         }
 
         private void stockComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+           // ApplyFilters();
         }
 
         private void itemDropdown()
@@ -278,10 +366,9 @@ namespace StockMS
             string selectedItem = (string)ItemComboBox.SelectedItem;
             string selectedStock = (string)stockComboBox.SelectedItem;
 
-            int itemId = getId(selectedItem, "item");
-            int stockId = getId(selectedStock, "stock");
+            filterRefresh(selectedItem, selectedStock);
 
-            MessageBox.Show(selectedItem + itemId.ToString());
+           
 
             //if (selectedPrice > 0 || (selectedName != null && selectedName != ""))
             //{
@@ -311,10 +398,11 @@ namespace StockMS
                 {
                     if(row["name"].ToString() == name)
                     {
-                        return (int)row["id"];
+                        return Convert.ToInt32(row["id"]);
                     } 
-                    return 0;
+                    
                 }
+                return 0;
             }
             else if (table == "item" || table == "i")
             {
@@ -323,13 +411,25 @@ namespace StockMS
                 {
                     if (row["name"].ToString() == name)
                     {
-                        return (int)row["id"];
+                        return Convert.ToInt32( row["id"]);
                     }
-                    return 0;
+
                 }
+                return 0;
             }
-            
+           
+
             return 0;
+        }
+
+        private void ItemComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void stockComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ApplyFilters();
         }
     }
 }

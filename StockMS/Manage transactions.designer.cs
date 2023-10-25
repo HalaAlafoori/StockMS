@@ -45,6 +45,10 @@ namespace StockMS
             this.updateBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toPicker = new System.Windows.Forms.DateTimePicker();
+            this.fromPicker = new System.Windows.Forms.DateTimePicker();
+            this.ItemComboBox = new System.Windows.Forms.ComboBox();
+            this.stockComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -61,10 +65,6 @@ namespace StockMS
             this.label4 = new System.Windows.Forms.Label();
             this.detalisTxt = new System.Windows.Forms.TextBox();
             this.clearBtn = new System.Windows.Forms.Button();
-            this.stockComboBox = new System.Windows.Forms.ComboBox();
-            this.ItemComboBox = new System.Windows.Forms.ComboBox();
-            this.fromPicker = new System.Windows.Forms.DateTimePicker();
-            this.toPicker = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_trans)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityNum)).BeginInit();
@@ -78,7 +78,7 @@ namespace StockMS
             this.label3.Location = new System.Drawing.Point(427, 505);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 23);
+            this.label3.Size = new System.Drawing.Size(82, 19);
             this.label3.TabIndex = 28;
             this.label3.Text = "Quantity :";
             // 
@@ -90,7 +90,7 @@ namespace StockMS
             this.label1.Location = new System.Drawing.Point(18, 500);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 23);
+            this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 23;
             this.label1.Text = "Item :";
             // 
@@ -140,6 +140,52 @@ namespace StockMS
             this.panel1.Size = new System.Drawing.Size(977, 104);
             this.panel1.TabIndex = 34;
             // 
+            // toPicker
+            // 
+            this.toPicker.Location = new System.Drawing.Point(796, 67);
+            this.toPicker.Name = "toPicker";
+            this.toPicker.Size = new System.Drawing.Size(169, 23);
+            this.toPicker.TabIndex = 45;
+            this.toPicker.ValueChanged += new System.EventHandler(this.toPicker_ValueChanged);
+            // 
+            // fromPicker
+            // 
+            this.fromPicker.Location = new System.Drawing.Point(622, 67);
+            this.fromPicker.Name = "fromPicker";
+            this.fromPicker.Size = new System.Drawing.Size(169, 23);
+            this.fromPicker.TabIndex = 44;
+            this.fromPicker.ValueChanged += new System.EventHandler(this.fromPicker_ValueChanged);
+            // 
+            // ItemComboBox
+            // 
+            this.ItemComboBox.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.ItemComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ItemComboBox.FormattingEnabled = true;
+            this.ItemComboBox.Items.AddRange(new object[] {
+            "Admin",
+            "User"});
+            this.ItemComboBox.Location = new System.Drawing.Point(380, 66);
+            this.ItemComboBox.Name = "ItemComboBox";
+            this.ItemComboBox.Size = new System.Drawing.Size(115, 25);
+            this.ItemComboBox.TabIndex = 43;
+            this.ItemComboBox.SelectedIndexChanged += new System.EventHandler(this.ItemComboBox_SelectedIndexChanged);
+            this.ItemComboBox.SelectionChangeCommitted += new System.EventHandler(this.ItemComboBox_SelectionChangeCommitted);
+            // 
+            // stockComboBox
+            // 
+            this.stockComboBox.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.stockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stockComboBox.FormattingEnabled = true;
+            this.stockComboBox.Items.AddRange(new object[] {
+            "Admin",
+            "User"});
+            this.stockComboBox.Location = new System.Drawing.Point(501, 66);
+            this.stockComboBox.Name = "stockComboBox";
+            this.stockComboBox.Size = new System.Drawing.Size(115, 25);
+            this.stockComboBox.TabIndex = 42;
+            this.stockComboBox.SelectedIndexChanged += new System.EventHandler(this.stockComboBox_SelectedIndexChanged);
+            this.stockComboBox.SelectionChangeCommitted += new System.EventHandler(this.stockComboBox_SelectionChangeCommitted);
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -149,7 +195,7 @@ namespace StockMS
             this.label6.Location = new System.Drawing.Point(665, 2);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(379, 39);
+            this.label6.Size = new System.Drawing.Size(301, 31);
             this.label6.TabIndex = 20;
             this.label6.Text = "Manage Trasnactions";
             // 
@@ -161,7 +207,7 @@ namespace StockMS
             this.label9.Location = new System.Drawing.Point(11, 2);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(463, 39);
+            this.label9.Size = new System.Drawing.Size(367, 31);
             this.label9.TabIndex = 19;
             this.label9.Text = "Stock Managment System";
             // 
@@ -198,7 +244,7 @@ namespace StockMS
             "User"});
             this.itemCmbox.Location = new System.Drawing.Point(164, 499);
             this.itemCmbox.Name = "itemCmbox";
-            this.itemCmbox.Size = new System.Drawing.Size(228, 28);
+            this.itemCmbox.Size = new System.Drawing.Size(228, 25);
             this.itemCmbox.TabIndex = 38;
             // 
             // DataGridView_trans
@@ -228,7 +274,7 @@ namespace StockMS
             this.label5.Location = new System.Drawing.Point(18, 552);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 23);
+            this.label5.Size = new System.Drawing.Size(58, 19);
             this.label5.TabIndex = 23;
             this.label5.Text = "Stock :";
             // 
@@ -240,14 +286,14 @@ namespace StockMS
             "User"});
             this.stockCmbox.Location = new System.Drawing.Point(164, 551);
             this.stockCmbox.Name = "stockCmbox";
-            this.stockCmbox.Size = new System.Drawing.Size(228, 28);
+            this.stockCmbox.Size = new System.Drawing.Size(228, 25);
             this.stockCmbox.TabIndex = 38;
             // 
             // quantityNum
             // 
             this.quantityNum.Location = new System.Drawing.Point(583, 499);
             this.quantityNum.Name = "quantityNum";
-            this.quantityNum.Size = new System.Drawing.Size(120, 27);
+            this.quantityNum.Size = new System.Drawing.Size(120, 23);
             this.quantityNum.TabIndex = 39;
             // 
             // label7
@@ -258,7 +304,7 @@ namespace StockMS
             this.label7.Location = new System.Drawing.Point(427, 606);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(178, 23);
+            this.label7.Size = new System.Drawing.Size(142, 19);
             this.label7.TabIndex = 23;
             this.label7.Text = "Transaction Type:";
             // 
@@ -270,7 +316,7 @@ namespace StockMS
             "out"});
             this.typeCmbox.Location = new System.Drawing.Point(583, 605);
             this.typeCmbox.Name = "typeCmbox";
-            this.typeCmbox.Size = new System.Drawing.Size(228, 28);
+            this.typeCmbox.Size = new System.Drawing.Size(228, 25);
             this.typeCmbox.TabIndex = 38;
             // 
             // label2
@@ -281,7 +327,7 @@ namespace StockMS
             this.label2.Location = new System.Drawing.Point(427, 548);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 23);
+            this.label2.Size = new System.Drawing.Size(53, 19);
             this.label2.TabIndex = 28;
             this.label2.Text = "Date :";
             // 
@@ -289,7 +335,7 @@ namespace StockMS
             // 
             this.DataDtp.Location = new System.Drawing.Point(583, 549);
             this.DataDtp.Name = "DataDtp";
-            this.DataDtp.Size = new System.Drawing.Size(200, 27);
+            this.DataDtp.Size = new System.Drawing.Size(200, 23);
             this.DataDtp.TabIndex = 40;
             // 
             // label4
@@ -300,7 +346,7 @@ namespace StockMS
             this.label4.Location = new System.Drawing.Point(21, 618);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 23);
+            this.label4.Size = new System.Drawing.Size(67, 19);
             this.label4.TabIndex = 28;
             this.label4.Text = "Details :";
             // 
@@ -327,53 +373,9 @@ namespace StockMS
             this.clearBtn.UseVisualStyleBackColor = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
-            // stockComboBox
-            // 
-            this.stockComboBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.stockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stockComboBox.FormattingEnabled = true;
-            this.stockComboBox.Items.AddRange(new object[] {
-            "Admin",
-            "User"});
-            this.stockComboBox.Location = new System.Drawing.Point(501, 66);
-            this.stockComboBox.Name = "stockComboBox";
-            this.stockComboBox.Size = new System.Drawing.Size(115, 28);
-            this.stockComboBox.TabIndex = 42;
-            this.stockComboBox.SelectedIndexChanged += new System.EventHandler(this.stockComboBox_SelectedIndexChanged);
-            // 
-            // ItemComboBox
-            // 
-            this.ItemComboBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ItemComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ItemComboBox.FormattingEnabled = true;
-            this.ItemComboBox.Items.AddRange(new object[] {
-            "Admin",
-            "User"});
-            this.ItemComboBox.Location = new System.Drawing.Point(380, 66);
-            this.ItemComboBox.Name = "ItemComboBox";
-            this.ItemComboBox.Size = new System.Drawing.Size(115, 28);
-            this.ItemComboBox.TabIndex = 43;
-            this.ItemComboBox.SelectedIndexChanged += new System.EventHandler(this.ItemComboBox_SelectedIndexChanged);
-            // 
-            // fromPicker
-            // 
-            this.fromPicker.Location = new System.Drawing.Point(622, 67);
-            this.fromPicker.Name = "fromPicker";
-            this.fromPicker.Size = new System.Drawing.Size(169, 27);
-            this.fromPicker.TabIndex = 44;
-            this.fromPicker.ValueChanged += new System.EventHandler(this.fromPicker_ValueChanged);
-            // 
-            // toPicker
-            // 
-            this.toPicker.Location = new System.Drawing.Point(796, 67);
-            this.toPicker.Name = "toPicker";
-            this.toPicker.Size = new System.Drawing.Size(169, 27);
-            this.toPicker.TabIndex = 45;
-            this.toPicker.ValueChanged += new System.EventHandler(this.toPicker_ValueChanged);
-            // 
             // Manage_transactions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 716);
