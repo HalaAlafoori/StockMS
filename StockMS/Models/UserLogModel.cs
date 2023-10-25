@@ -11,7 +11,7 @@ namespace StockMS.Models
     public class UserLogModel : Database
     {
         public int Id;
-        public int UserId;
+        public Int64 UserId;
         public int RowId;
         public string TableName;
         public string Type;

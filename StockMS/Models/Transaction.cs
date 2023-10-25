@@ -36,5 +36,18 @@ namespace StockMS.Models
         {
             TYPE = "transaction";
         }
+        public static DateTime stringToDate(string dateString)
+        {
+
+
+            return DateTime.Parse(dateString);
+        }
+
+        public static String dateToString(DateTime date)
+        {
+
+
+            return date.ToString("yyyy-MM-dd");
+        }
     }
 }

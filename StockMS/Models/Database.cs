@@ -20,11 +20,11 @@ namespace StockMS.Models
         {
             Connector.Operate("insert", Connector.ArrayToString(parameters), TYPE);
         }
-        public static void Remove(string key, string column = "")
+        public static string Remove(string key, string column = "")
         {
             if (column == "") column = "name";
             string query = $"&{column}={key}";
-            Connector.Operate("delete", query, TYPE);
+            return Connector.Operate("delete", query, TYPE);
         }
         public static string Update(string[,] parameters)
         {
@@ -58,7 +58,7 @@ namespace StockMS.Models
 
 
 
-       public static DataTable Find(int key, string column = "")
+        public static DataTable Find(int key, string column = "")
         //public static DataTable? Find(string key, string column = "")
         {
             if (column == "") column = "name";

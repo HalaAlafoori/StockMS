@@ -11,6 +11,7 @@ namespace StockMS
 {
     internal class UserFacade
     {
+        // user operations
         public static DataTable LoginUser(string username)
         {
             User user = new User();
@@ -18,11 +19,9 @@ namespace StockMS
             {
                 user.Name = username;
                 return User.Find(username);
-                //return User.Find(user.Name);
             }
             catch (Exception e)
             {
-                //MessageBox.Show(e.Message);
                 return new DataTable();
             }
         }
@@ -43,10 +42,19 @@ namespace StockMS
 
         public static void ActivateUser(int id)
         {
+            LogProxy logProxy = new LogProxy();
             try
             {
                 User.TYPE = "user";
                 User.Activate(id);
+
+                // user log
+                UserLogModel ulm = new UserLogModel();
+                ulm.UserId = UserDetails.ID;
+                ulm.RowId = id;
+                ulm.Type = "update";
+                ulm.TableName = "user";
+                logProxy.Log(ulm);
             }
             catch (Exception e)
             {
@@ -57,6 +65,8 @@ namespace StockMS
         public static bool AddUser(string username, string password, string phone, int userType)
         {
             User newUser = new User();
+            LogProxy logProxy = new LogProxy();
+
             try
             {
                 newUser.Name = username;
@@ -64,7 +74,19 @@ namespace StockMS
                 newUser.Phone = phone;
                 newUser.IsAdmin = userType;
                 string returned = newUser.Save();
-                return returned == "1" ? true : false;
+
+                if (!returned.StartsWith("ERR"))
+                {
+                    // user log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(returned);
+                    ulm.Type = "insert";
+                    ulm.TableName = "user";
+                    logProxy.Log(ulm);
+                    return true;
+                }
+                return false;
             }
             catch (Exception e)
             {
@@ -76,6 +98,8 @@ namespace StockMS
 
         public static void UpdateUser(int ID, string name, string password, string phone, int userType)
         {
+            LogProxy logProxy = new LogProxy();
+
             User updUser = new User();
             try
             {
@@ -84,7 +108,17 @@ namespace StockMS
                 updUser.Password = password;
                 updUser.Phone = phone;
                 updUser.IsAdmin = userType;
-                updUser.Update();
+                string returned = updUser.Update();
+                if (!returned.StartsWith("ERR"))
+                {
+                    // user log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = ID;
+                    ulm.Type = "update";
+                    ulm.TableName = "user";
+                    logProxy.Log(ulm);
+                }
             }
             catch (Exception e)
             {
@@ -95,16 +129,30 @@ namespace StockMS
 
         public static void DeleteUser(int ID)
         {
+            LogProxy logProxy = new LogProxy();
+
             try
             {
-                //User.TYPE = "user";
-                User.Remove(ID.ToString(), "id");
+                string returned = User.Remove(ID.ToString(), "id");
+                if (!returned.StartsWith("ERR"))
+                {
+                    // user log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = ID;
+                    ulm.Type = "delete";
+                    ulm.TableName = "user";
+                    logProxy.Log(ulm);
+                }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
         }
+
+
+        // Item operations
 
         public static DataTable AllItems()
         {
@@ -125,7 +173,7 @@ namespace StockMS
             try
             {
                 User.TYPE = "item";
-                return User.Find(name,"name");
+                return User.Find(name, "name");
             }
             catch (Exception e)
             {
@@ -136,14 +184,27 @@ namespace StockMS
 
         public static bool AddItem(string name, double price)
         {
+            LogProxy logProxy = new LogProxy();
+
             Item newitem = new Item();
             try
             {
                 newitem.Name = name;
                 newitem.Price = price;
-                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
                 string returned = newitem.Save();
-                return returned == "1" ? true : false;
+
+                if (!returned.StartsWith("ERR"))
+                {
+                    // item log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(returned);
+                    ulm.Type = "insert";
+                    ulm.TableName = "item";
+                    logProxy.Log(ulm);
+                    return true;
+                }
+                return false;
             }
             catch (Exception e)
             {
@@ -151,12 +212,66 @@ namespace StockMS
                 return false;
             }
 
-            //FOR TESTING
-            //MessageBox.Show(newUser.Save());
+        }
+        public static void DeleteItem(string ID)
+        {
+            LogProxy logProxy = new LogProxy();
+
+            try
+            {
+                Item.TYPE = "item";
+                string returned = Item.Remove(ID, "id");
+                if (!returned.StartsWith("ERR"))
+                {
+                    // Item log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(ID);
+                    ulm.Type = "delete";
+                    ulm.TableName = "item";
+                    logProxy.Log(ulm);
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public static void UpdateItem(int ID, string name, string price)
+        {
+            LogProxy logProxy = new LogProxy();
+
+            Item upditem = new Item();
+            try
+            {
+                upditem.Id = ID;
+                upditem.Name = name;
+                upditem.Price = double.Parse(price);
+                string returned = upditem.Update();
+                if (!returned.StartsWith("ERR"))
+                {
+                    // item log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = ID;
+                    ulm.Type = "update";
+                    ulm.TableName = "item";
+                    logProxy.Log(ulm);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
-        public static bool AddTransaction(int itemId,int stockId,String Details,int Quantitiy,int Type,String date )
+
+        // transaction operations
+        public static bool AddTransaction(int itemId, int stockId, String Details, int Quantitiy, int Type, String date)
         {
+            LogProxy logProxy = new LogProxy();
+
             Transaction newtrans = new Transaction();
             try
             {
@@ -165,12 +280,21 @@ namespace StockMS
                 newtrans.Quantitiy = Quantitiy;
                 newtrans.Date = date;
                 newtrans.ItemID = itemId;
-                newtrans.StockId = 1;
+                newtrans.StockId = stockId;
 
-
-                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
                 string returned = newtrans.Save();
-                return returned == "1" ? true : false;
+                if (!returned.StartsWith("ERR"))
+                {
+                    // transaction log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(returned);
+                    ulm.Type = "insert";
+                    ulm.TableName = "transaction";
+                    logProxy.Log(ulm);
+                    return true;
+                }
+                return false;
             }
             catch (Exception e)
             {
@@ -181,12 +305,25 @@ namespace StockMS
             //FOR TESTING
             //MessageBox.Show(newUser.Save());
         }
-
-        public static void DeleteItem(string ID)
+        public static DataTable AllTrans()
         {
             try
             {
-                Item.TYPE = "item";
+                User.TYPE = "transaction";
+                return User.All();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return new DataTable();
+            }
+        }
+
+        public static void DeleteTransaction(string ID)
+        {
+            try
+            {
+                Item.TYPE = "transaction";
                 Item.Remove(ID, "id");
             }
             catch (Exception e)
@@ -195,26 +332,7 @@ namespace StockMS
             }
         }
 
-        public static void UpdateItem(int ID, string name, string price)
-        {
-            Item upditem = new Item();
-            try
-            {
-                upditem.Id = ID;
-                upditem.Name = name;
-                upditem.Price = double.Parse(price);
-                //upditem.Price = Int32.Parse(salary);
-                upditem.Update();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-            //FOR TESTING
-            //MessageBox.Show(updteacher.Update());
-        }
-
+        // Item stock
         public static DataTable AllStocks()
         {
             try
@@ -230,14 +348,26 @@ namespace StockMS
         }
         public static bool AddStock(string name, string location)
         {
+            LogProxy logProxy = new LogProxy();
+
             Stock newStock = new Stock();
             try
             {
                 newStock.Name = name;
                 newStock.Location = location;
-                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
                 string returned = newStock.Save();
-                return returned == "1" ? true : false;
+                if (!returned.StartsWith("ERR"))
+                {
+                    // stock log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(returned);
+                    ulm.Type = "insert";
+                    ulm.TableName = "stock";
+                    logProxy.Log(ulm);
+                    return true;
+                }
+                return false;
             }
             catch (Exception e)
             {
@@ -245,15 +375,25 @@ namespace StockMS
                 return false;
             }
 
-            //FOR TESTING
-            //MessageBox.Show(newUser.Save());
         }
         public static void DeleteStock(string ID)
         {
+            LogProxy logProxy = new LogProxy();
+
             try
             {
                 Item.TYPE = "stock";
-                Item.Remove(ID, "id");
+                string returned = Item.Remove(ID, "id");
+                if (!returned.StartsWith("ERR"))
+                {
+                    // stock log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = int.Parse(ID);
+                    ulm.Type = "delete";
+                    ulm.TableName = "stock";
+                    logProxy.Log(ulm);
+                }
             }
             catch (Exception e)
             {
@@ -263,14 +403,25 @@ namespace StockMS
 
         public static void UpdateStock(int ID, string name, string location)
         {
+            LogProxy logProxy = new LogProxy();
+
             Stock updStock = new Stock();
             try
             {
                 updStock.Id = ID;
                 updStock.Name = name;
                 updStock.Location = location;
-                //upditem.Price = Int32.Parse(salary);
-                updStock.Update();
+                string returned = updStock.Update();
+                if (!returned.StartsWith("ERR"))
+                {
+                    // stock log
+                    UserLogModel ulm = new UserLogModel();
+                    ulm.UserId = UserDetails.ID;
+                    ulm.RowId = ID;
+                    ulm.Type = "update";
+                    ulm.TableName = "stock";
+                    logProxy.Log(ulm);
+                }
             }
             catch (Exception e)
             {
@@ -281,32 +432,12 @@ namespace StockMS
             //MessageBox.Show(updteacher.Update());
         }
 
-
-        public static DataTable AllTrans()
-        {
-            try
-            {
-                User.TYPE = "transaction";
-                return User.All();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return new DataTable();
-            }
-        }
-
         // user log operations
 
         public static bool AddUserLog(UserLogModel newLog)
         {
-            //UserLogModel newLog = new UserLogModel();
             try
             {
-                //newLog.UserId = userId;
-                //newLog.RowId = rowId;
-                //newLog.TableName = tableName;
-                //newLog.Type = type;
                 string returned = newLog.Save();
                 return returned == "1" ? true : false;
             }

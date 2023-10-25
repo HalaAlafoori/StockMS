@@ -101,7 +101,7 @@ namespace StockMS.Models
         {
             return new string[,]
             {
-                //{"id", Id.ToString() },
+                {"id", Id.ToString() },
                 {"name", Name.ToString() },
                 {"password", Password.ToString() },
                 {"phone", Phone.ToString() },
