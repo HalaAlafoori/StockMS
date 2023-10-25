@@ -64,7 +64,7 @@ namespace StockMS
                 newUser.Phone = phone;
                 newUser.IsAdmin = userType;
                 string returned = newUser.Save();
-                return returned == "1"? true:false;
+                return returned == "1" ? true : false;
             }
             catch (Exception e)
             {
@@ -72,8 +72,38 @@ namespace StockMS
                 return false;
             }
 
-            //FOR TESTING
-            //MessageBox.Show(newUser.Save());
+        }
+
+        public static void UpdateUser(int ID, string name, string password, string phone, int userType)
+        {
+            User updUser = new User();
+            try
+            {
+                updUser.Id = ID;
+                updUser.Name = name;
+                updUser.Password = password;
+                updUser.Phone = phone;
+                updUser.IsAdmin = userType;
+                updUser.Update();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+        public static void DeleteUser(int ID)
+        {
+            try
+            {
+                //User.TYPE = "user";
+                User.Remove(ID.ToString(), "id");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public static DataTable AllItems()
@@ -82,6 +112,20 @@ namespace StockMS
             {
                 User.TYPE = "item";
                 return User.All();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return new DataTable();
+            }
+        }
+
+        public static DataTable GetItem(String name)
+        {
+            try
+            {
+                User.TYPE = "item";
+                return User.Find(name,"name");
             }
             catch (Exception e)
             {
@@ -99,6 +143,33 @@ namespace StockMS
                 newitem.Price = price;
                 //newUser.PhoneNumber = Int32.Parse(phoneNumber);
                 string returned = newitem.Save();
+                return returned == "1" ? true : false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+            //FOR TESTING
+            //MessageBox.Show(newUser.Save());
+        }
+
+        public static bool AddTransaction(int itemId,int stockId,String Details,int Quantitiy,int Type,String date )
+        {
+            Transaction newtrans = new Transaction();
+            try
+            {
+                newtrans.Details = Details;
+                newtrans.Type = Type;
+                newtrans.Quantitiy = Quantitiy;
+                newtrans.Date = date;
+                newtrans.ItemID = itemId;
+                newtrans.StockId = 1;
+
+
+                //newUser.PhoneNumber = Int32.Parse(phoneNumber);
+                string returned = newtrans.Save();
                 return returned == "1" ? true : false;
             }
             catch (Exception e)
@@ -211,6 +282,45 @@ namespace StockMS
         }
 
 
+        public static DataTable AllTrans()
+        {
+            try
+            {
+                User.TYPE = "transaction";
+                return User.All();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return new DataTable();
+            }
+        }
+
+        // user log operations
+
+        public static bool AddUserLog(UserLogModel newLog)
+        {
+            //UserLogModel newLog = new UserLogModel();
+            try
+            {
+                //newLog.UserId = userId;
+                //newLog.RowId = rowId;
+                //newLog.TableName = tableName;
+                //newLog.Type = type;
+                string returned = newLog.Save();
+                return returned == "1" ? true : false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+        }
+
     }
 
+
 }
+
+

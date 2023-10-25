@@ -50,18 +50,18 @@ namespace StockMS
             this.panel2 = new System.Windows.Forms.Panel();
             this.addBtn = new System.Windows.Forms.Button();
             this.itemCmbox = new System.Windows.Forms.ComboBox();
-            this.DataGridView_users = new System.Windows.Forms.DataGridView();
+            this.DataGridView_trans = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.stockCmbox = new System.Windows.Forms.ComboBox();
             this.quantityNum = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.transCmbox = new System.Windows.Forms.ComboBox();
+            this.typeCmbox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DataDtp = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.detalisTxt = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_users)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_trans)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityNum)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,6 +179,7 @@ namespace StockMS
             this.addBtn.TabIndex = 37;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click_1);
             // 
             // itemCmbox
             // 
@@ -191,24 +192,24 @@ namespace StockMS
             this.itemCmbox.Size = new System.Drawing.Size(228, 25);
             this.itemCmbox.TabIndex = 38;
             // 
-            // DataGridView_users
+            // DataGridView_trans
             // 
-            this.DataGridView_users.AllowUserToAddRows = false;
-            this.DataGridView_users.AllowUserToDeleteRows = false;
-            this.DataGridView_users.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DataGridView_trans.AllowUserToAddRows = false;
+            this.DataGridView_trans.AllowUserToDeleteRows = false;
+            this.DataGridView_trans.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DataGridView_users.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.DataGridView_users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView_users.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridView_users.Location = new System.Drawing.Point(0, 44);
-            this.DataGridView_users.MultiSelect = false;
-            this.DataGridView_users.Name = "DataGridView_users";
-            this.DataGridView_users.RowHeadersWidth = 51;
-            this.DataGridView_users.RowTemplate.Height = 29;
-            this.DataGridView_users.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView_users.Size = new System.Drawing.Size(977, 413);
-            this.DataGridView_users.TabIndex = 36;
-            this.DataGridView_users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_users_CellClick);
+            this.DataGridView_trans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.DataGridView_trans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView_trans.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridView_trans.Location = new System.Drawing.Point(0, 44);
+            this.DataGridView_trans.MultiSelect = false;
+            this.DataGridView_trans.Name = "DataGridView_trans";
+            this.DataGridView_trans.RowHeadersWidth = 51;
+            this.DataGridView_trans.RowTemplate.Height = 29;
+            this.DataGridView_trans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridView_trans.Size = new System.Drawing.Size(977, 413);
+            this.DataGridView_trans.TabIndex = 36;
+            this.DataGridView_trans.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_trans_CellClick);
             // 
             // label5
             // 
@@ -252,16 +253,16 @@ namespace StockMS
             this.label7.TabIndex = 23;
             this.label7.Text = "Transaction Type:";
             // 
-            // transCmbox
+            // typeCmbox
             // 
-            this.transCmbox.FormattingEnabled = true;
-            this.transCmbox.Items.AddRange(new object[] {
-            "Admin",
-            "User"});
-            this.transCmbox.Location = new System.Drawing.Point(583, 605);
-            this.transCmbox.Name = "transCmbox";
-            this.transCmbox.Size = new System.Drawing.Size(228, 25);
-            this.transCmbox.TabIndex = 38;
+            this.typeCmbox.FormattingEnabled = true;
+            this.typeCmbox.Items.AddRange(new object[] {
+            "in",
+            "out"});
+            this.typeCmbox.Location = new System.Drawing.Point(583, 605);
+            this.typeCmbox.Name = "typeCmbox";
+            this.typeCmbox.Size = new System.Drawing.Size(228, 25);
+            this.typeCmbox.TabIndex = 38;
             // 
             // label2
             // 
@@ -311,11 +312,11 @@ namespace StockMS
             this.Controls.Add(this.detalisTxt);
             this.Controls.Add(this.DataDtp);
             this.Controls.Add(this.quantityNum);
-            this.Controls.Add(this.transCmbox);
+            this.Controls.Add(this.typeCmbox);
             this.Controls.Add(this.stockCmbox);
             this.Controls.Add(this.itemCmbox);
             this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.DataGridView_users);
+            this.Controls.Add(this.DataGridView_trans);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.updateBtn);
@@ -333,7 +334,7 @@ namespace StockMS
             this.Load += new System.EventHandler(this.Manage_users_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_users)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_trans)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -351,12 +352,12 @@ namespace StockMS
         private System.Windows.Forms.Panel panel2;
         private Button addBtn;
         private ComboBox itemCmbox;
-        private DataGridView DataGridView_users;
+        private DataGridView DataGridView_trans;
         private Label label5;
         private ComboBox stockCmbox;
         private NumericUpDown quantityNum;
         private Label label7;
-        private ComboBox transCmbox;
+        private ComboBox typeCmbox;
         private Label label2;
         private DateTimePicker DataDtp;
         private Label label4;

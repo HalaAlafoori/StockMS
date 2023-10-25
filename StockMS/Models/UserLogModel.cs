@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockMS.Models
 {
-    public class UserLog : Database
+    public class UserLogModel : Database
     {
         public int Id;
         public int UserId;
@@ -32,7 +32,7 @@ namespace StockMS.Models
             };
         }
 
-        public UserLog()
+        public UserLogModel()
         {
             TYPE = "userlog";
         }

@@ -32,7 +32,7 @@ namespace StockMS.Models
         }
         public string Update()
         {
-            return Connector.Operate("update", Connector.ArrayToString2(Fields()), TYPE);
+            return Connector.Operate("update", Connector.ArrayToString(Fields()), TYPE);
             // ?? to save ??
         }
         public static string Activate(int id)
@@ -40,6 +40,25 @@ namespace StockMS.Models
             return Connector.Operate("activate", $"&id={id}", TYPE);
         }
         public static DataTable Find(string key, string column = "")
+        //public static DataTable? Find(string key, string column = "")
+        {
+            if (column == "") column = "name";
+            string query = $"&{column}={key}";
+            string data = Connector.Operate("select", query, TYPE);
+            if (data != "0")
+            {
+                var temp = JsonConvert.DeserializeObject<DataTable>(data);
+                return temp;
+            }
+            else
+            {
+                return new DataTable();
+            }
+        }
+
+
+
+       public static DataTable Find(int key, string column = "")
         //public static DataTable? Find(string key, string column = "")
         {
             if (column == "") column = "name";
